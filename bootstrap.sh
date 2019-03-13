@@ -46,9 +46,16 @@ if [ -n "$MY_PROXY" ]; then
 	# Escape backslash, if any
 	my_proxy_escaped=$(echo "$MY_PROXY" | sed 's#\\#\\\\#g')
 	echo "Escaped proxy info: $my_proxy_escaped"
-	sudo printf '\nSys.setenv(http_proxy = "%s")' "$my_proxy_escaped" >> /usr/lib/R/etc/Rprofile.site
-	sudo printf '\nSys.setenv(https_proxy = "%s")' "$my_proxy_escaped" >> /usr/lib/R/etc/Rprofile.site
-
+	
+	# Check if proxy info is already set in file Rprofile.site
+	rprofile=/usr/lib/R/etc/Rprofile.site
+	if grep -q http_proxy "$rprofile"; then
+		echo "File $rprofile already has http_proxy set, moving on..."
+	else
+		echo "Adding proxy info to file $rprofile..."
+		sudo printf '\nSys.setenv(http_proxy = "%s")' "$my_proxy_escaped" >> $rprofile
+		sudo printf '\nSys.setenv(https_proxy = "%s")' "$my_proxy_escaped" >> $rprofile
+	fi
 	
 fi
 
