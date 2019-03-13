@@ -1,5 +1,6 @@
 
-###open browser on host, browse to localhost:8787
-### username: vagrant
-### password: vagrant
+For RStudio, simply open browser on host, browse to *localhost:8787*.
+
+- username: vagrant
+- password: vagrant
 

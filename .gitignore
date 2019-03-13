@@ -3,3 +3,5 @@
 data
 www
 *.log
+*.crt
+**/git_repos/*
