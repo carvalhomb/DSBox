@@ -5,3 +5,4 @@ www
 *.log
 *.crt
 **/git_repos/*
+**/kernel*.json

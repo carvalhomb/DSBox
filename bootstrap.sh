@@ -203,7 +203,7 @@ fi
 toilet -f standard -k  Add Py3 pkgs
 #sudo pip3 install --upgrade pip #Latest pip is broken, so comment out the upgrade
 
-for x in  csvkit numpy scipy skll numexpr tables openpyxl xlsxwriter xlrd feedparser beautifulsoup4 plotly statsmodels dataset nltk networkx deap pydot rpy2 jug nose pandas matplotlib seaborn sklearn mrjob lightgbm astropy glob2 graphviz gsl humanize markdown more-itertools natsort ply pyreadline scikit-image sympy gensim pm4py; do
+for x in  csvkit numpy scipy skll numexpr tables openpyxl xlsxwriter xlrd feedparser beautifulsoup4 plotly statsmodels dataset nltk networkx deap pydot rpy2 jug nose pandas matplotlib seaborn sklearn mrjob lightgbm astropy glob2 graphviz gsl humanize markdown more-itertools natsort ply pyreadline scikit-image sympy gensim pm4py gitpython spyder-kernels ; do
     echo -e '\e[32m########################################################################\e[0m'
     echo -e "\e[32m# sudo pip3 install  $x\e[0m"
     echo -e '\e[32m########################################################################\e[0m'
@@ -225,7 +225,14 @@ echo -e '\e[32m#################################################################
 echo -e '\e[32m# sudo apt-get -y install jupyter-notebook\e[0m'
 echo -e '\e[32m########################################################################\e[0m'
 sudo apt-get install -y jupyter-notebook
-
+echo -e '\e[32m########################################################################\e[0m'
+echo -e '\e[32m# sudo apt-get -y install jupyter_contrib_nbextensions\e[0m'
+echo -e '\e[32m########################################################################\e[0m'
+sudo apt-get install -y jupyter_contrib_nbextensions
+echo -e '\e[32m########################################################################\e[0m'
+echo -e '\e[32m# sudo apt-get -y install jupyterlab\e[0m'
+echo -e '\e[32m########################################################################\e[0m'
+sudo apt-get install -y jupyterlab
 
 ########################################################################
 # Cleaning up

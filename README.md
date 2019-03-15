@@ -147,9 +147,9 @@ For RStudio, simply open browser on host, browse to [localhost:8787](http://loca
 
 * Python: python3-pip python3-all python3-all-dev python-all python-all-dev python-pip ipython python3-tk ipython3 graphviz
 
-* Python packages: csvkit numpy scipy skll numexpr tables openpyxl xlsxwriter xlrd feedparser beautifulsoup4 plotly statsmodels dataset nltk networkx deap pydot rpy2 jug nose pandas matplotlib seaborn sklearn mrjob lightgbm astropy glob2 graphviz gsl humanize markdown more-itertools natsort ply pyreadline scikit-image sympy gensim pm4py
+* Python packages: csvkit numpy scipy skll numexpr tables openpyxl xlsxwriter xlrd feedparser beautifulsoup4 plotly statsmodels dataset nltk networkx deap pydot rpy2 jug nose pandas matplotlib seaborn sklearn mrjob lightgbm astropy glob2 graphviz gsl humanize markdown more-itertools natsort ply pyreadline scikit-image sympy gensim pm4py gitpython spyder-kernels 
 
-* Jupyter: jupyter-core jupyter-notebook: Python web-based data-science notebook
+* Jupyter: jupyter-core jupyter-notebook jupyter_contrib_nbextensions: Python web-based data-science notebook
 
 ----
 
