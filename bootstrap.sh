@@ -42,6 +42,13 @@ if [ -n "$MY_PROXY" ]; then
 	else
 		echo "Variable https_proxy already set (to $https_proxy), moving on..."
 	fi
+    
+	if [[ -z "${no_proxy}" ]]; then
+		sudo echo "export no_proxy=$NO_PROXY" >> /etc/environment
+		export no_proxy=$NO_PROXY
+	else
+		echo "Variable no_proxy already set (to $no_proxy), moving on..."
+	fi
 	
 	# Escape backslash, if any
 	my_proxy_escaped=$(echo "$MY_PROXY" | sed 's#\\#\\\\#g')
@@ -55,6 +62,7 @@ if [ -n "$MY_PROXY" ]; then
 		echo "Adding proxy info to file $rprofile..."
 		sudo printf '\nSys.setenv(http_proxy = "%s")' "$my_proxy_escaped" >> $rprofile
 		sudo printf '\nSys.setenv(https_proxy = "%s")' "$my_proxy_escaped" >> $rprofile
+        sudo printf '\nSys.setenv(no_proxy = "%s")' "$no_proxy" >> $rprofile
 	fi
 	
 fi
@@ -80,6 +88,10 @@ for x in build-essential gfortran gcc-multilib g++-multilib libffi-dev libffi6 l
     sudo apt-get -y install $x
 done
 
+toilet -f standard -k  Dynamic swap
+echo -e '\e[32m########################################################################\e[0m'
+echo -e '\e[32m# sudo apt-get -y install swapspace\e[0m'
+sudo apt-get install -y swapspace 
 
 ########################################################################
 # Install R and R Studio

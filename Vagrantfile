@@ -16,6 +16,7 @@ Vagrant.configure("2") do |config|
   my_proxy = nil
   my_proxy_url = ''
   my_proxy_auth = ''
+  no_proxy=''
   
   if ENV['MY_PROXY_SERVER'] and ENV['MY_PROXY_PORT']
 	my_proxy_url = ENV['MY_PROXY_SERVER'] + ":" + ENV['MY_PROXY_PORT']	
@@ -23,6 +24,12 @@ Vagrant.configure("2") do |config|
   
   if ENV['MY_PROXY_USERNAME'] and ENV['MY_PROXY_PASSWORD']
 	my_proxy_auth = ENV['MY_PROXY_USERNAME'] + ":" + ENV['MY_PROXY_PASSWORD'] + "@"
+  end
+  
+  if ENV['NO_PROXY'] 
+	no_proxy = ENV['NO_PROXY'] 
+  else
+    no_proxy = 'localhost,127.0.0.1'
   end
 	
   if my_proxy_url != ''
@@ -33,7 +40,7 @@ Vagrant.configure("2") do |config|
   if Vagrant.has_plugin?("vagrant-proxyconf")
     config.proxy.http     = my_proxy
     config.proxy.https    = my_proxy
-    config.proxy.no_proxy = "localhost,127.0.0.1"
+    config.proxy.no_proxy = no_proxy
   end
   end
   
@@ -48,15 +55,15 @@ Vagrant.configure("2") do |config|
   ##############################################################################
   # Configure box specs
   config.vm.provider "virtualbox" do |vb|   
-    vb.memory = "4000"
+    vb.memory = "5000"
     #vb.cpus = "2"
   end
   
   ##############################################################################
   # Run provision script, passing on the environmental variables we need
   
-  puts "MY_PROXY: " + my_proxy.to_s + "; MY_SSL_CERT: " + my_ssl_cert.to_s + "."
+  puts "MY_PROXY: " + my_proxy.to_s +  "; NO_PROXY: " + no_proxy.to_s + "; MY_SSL_CERT: " + my_ssl_cert.to_s + "."
   
-  config.vm.provision :shell, path: "bootstrap.sh", env: {"MY_PROXY" => my_proxy, "MY_SSL_CERT" => my_ssl_cert}
+  config.vm.provision :shell, path: "bootstrap.sh", env: {"MY_PROXY" => my_proxy, "NO_PROXY" => no_proxy,  "MY_SSL_CERT" => my_ssl_cert}
 
 end
